@@ -9,9 +9,9 @@ import { Filter } from './contactList/filter.jsx';
 
 export const App = () => {
   const [contacts, setContacts] = useState([
-    // { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    // { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    // { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
   ]);
   const [filtered] = useState('');
 
@@ -19,20 +19,13 @@ export const App = () => {
 
   useEffect(() => {
     const data = localStorage.getItem('cont');
-    console.log("data",data)
     if (data !== []) {
-      console.log("contactsLocaltoNEW",JSON.parse(data))
       return setContacts(JSON.parse(data))
     };
-    // console.log("JSON.parse(data)", JSON.parse(data))
-    // console.log("contactsLocal",contacts)
-    
   }, []);
-  console.log("contacts",contacts)
+  
   useEffect(() => {
-    
     contacts && localStorage.setItem('cont', JSON.stringify(contacts));
-    console.log("JSON.stringify(contacts)",JSON.stringify(contacts))
   }, [contacts]);
 
   const createName = data => {
