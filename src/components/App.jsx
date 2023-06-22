@@ -20,19 +20,18 @@ export const App = () => {
   useEffect(() => {
     const data = localStorage.getItem('cont');
     console.log("data",data)
-    if (data) {
-      console.log("JSON.parse(data)", JSON.parse(data))
+    if (data !== []) {
+      console.log("contactsLocaltoNEW",JSON.parse(data))
       return setContacts(JSON.parse(data))
     };
-
     // console.log("JSON.parse(data)", JSON.parse(data))
     // console.log("contactsLocal",contacts)
     
   }, []);
-  
+  console.log("contacts",contacts)
   useEffect(() => {
-    console.log("contacts",contacts)
-    contacts !== [] && localStorage.setItem('cont', JSON.stringify(contacts));
+    
+    contacts && localStorage.setItem('cont', JSON.stringify(contacts));
     console.log("JSON.stringify(contacts)",JSON.stringify(contacts))
   }, [contacts]);
 
