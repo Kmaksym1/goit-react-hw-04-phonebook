@@ -7,23 +7,17 @@ import { ContactForm } from './contactForm/contactForm.jsx';
 import ContactList from './contactList/contactList.jsx';
 import { Filter } from './contactList/filter.jsx';
 
+const exampleContacts = [
+  { id: 'id-1', name: 'Name Example', number: '459-12-56' },
+  { id: 'id-2', name: 'Example Name', number: '443-89-12' },
+];
+
 export const App = () => {
-  const [contacts, setContacts] = useState([
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  ]);
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('cont')) || exampleContacts
+  );
   const [filtered] = useState('');
 
- 
-
-  useEffect(() => {
-    const data = localStorage.getItem('cont');
-    if (data !== []) {
-      return setContacts(JSON.parse(data))
-    };
-  }, []);
-  
   useEffect(() => {
     contacts && localStorage.setItem('cont', JSON.stringify(contacts));
   }, [contacts]);
@@ -76,5 +70,3 @@ export const App = () => {
     </div>
   );
 };
-
-
