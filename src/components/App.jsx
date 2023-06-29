@@ -16,7 +16,8 @@ export const App = () => {
   const [contacts, setContacts] = useState(
     JSON.parse(localStorage.getItem('cont')) || exampleContacts
   );
-  const [filtered] = useState('');
+  const [filtered, setFiltered] = useState('');
+  // let filtered = "";
 
   useEffect(() => {
     contacts && localStorage.setItem('cont', JSON.stringify(contacts));
@@ -36,18 +37,32 @@ export const App = () => {
     setContacts([...contacts, newUser]);
   };
 
-  const changeFilter = filter => {
-    filter = filter.toLowerCase();
+
+
+
+
+
+  const changeFilter = filt => {
+    setFiltered(filt.toLowerCase())
   };
+  
+  const vicibleContacts = contacts.filter(({ name }) =>
+    name.toLowerCase().includes(filtered))
+
+
+
+  
+
+
+    
+  
 
   const handleDelete = idDel => {
     setContacts(prevContacts => {
       return prevContacts.filter(({ id }) => id !== idDel);
     });
   };
-  const vicibleContacts = contacts.filter(({ name }) =>
-    name.toLowerCase().includes(filtered)
-  );
+
 
   return (
     <div
